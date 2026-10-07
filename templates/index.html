@@ -1,0 +1,758 @@
+<!DOCTYPE html>
+<html lang="en">
+
+   name="description"
+        content="MOG Stitches is a premium Nigerian bespoke fashion brand in Port Harcourt, creating elegant agbada, native wear, senator styles, suits and female wear."
+    >
+
+    <meta
+        name="keywords"
+        content="MOG Stitches, bespoke tailoring Port Harcourt, Nigerian fashion, agbada, native wear, senator wear, suits, female fashion, bespoke fashion Nigeria"
+    >
+
+    <meta name="author" content="MOG Stitches">
+
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='style.css') }}"
+    >
+<!-- Social Media Preview -->
+
+<meta property="og:title"
+      content="MOG Stitches | Premium Nigerian Bespoke Fashion">
+
+<meta property="og:description"
+      content="Premium Nigerian bespoke fashion crafted with precision, elegance and style.">
+
+<meta property="og:image"
+      content="{{ url_for('static', filename='images/hero.png', _external=True) }}">
+
+<meta property="og:type"
+      content="website">
+
+<meta property="og:site_name"
+      content="MOG Stitches">
+
+<meta name="twitter:card"
+      content="summary_large_image">
+
+<meta name="twitter:title"
+      content="MOG Stitches | Premium Nigerian Bespoke Fashion">
+
+<meta name="twitter:description"
+      content="Premium Nigerian bespoke fashion crafted with precision, elegance and style.">
+
+<meta name="twitter:image"
+      content="{{ url_for('static', filename='images/hero.png', _external=True) }}">
+
+</head>
+
+<body>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+
+    <div class="nav-container">
+
+        <a href="#home" class="logo">
+            MOG <span>STITCHES</span>
+        </a>
+
+        <button class="menu-toggle" onclick="toggleMenu()">
+            ☰
+        </button>
+
+        <div class="nav-links" id="navLinks">
+
+            <a href="#home">Home</a>
+            <a href="#about">About</a>
+            <a href="#services">Services</a>
+            <a href="#gallery">Collection</a>
+            <a href="#contact">Contact</a>
+
+            <a href="#contact" class="nav-button">
+                Book Appointment
+            </a>
+
+        </div>
+
+    </div>
+
+</nav>
+        <h1>MOG STITCHES</h1>
+
+        <div>
+            <a href="#home">Home</a>
+            <a href="#about">About</a>
+            <a href="#services">Services</a>
+            <a href="#gallery">Gallery</a>
+            <a href="#contact">Contact</a>
+        </div>
+    </nav>
+
+
+    <!-- Hero Section -->
+    <section id="home">
+
+   <section id="home">
+
+    <h2>MOG STITCHES</h2>
+
+    <h3>Inspired by the Master Designer.</h3>
+
+    <p>
+        Premium Nigerian bespoke fashion crafted
+        with precision, elegance and style.
+    </p>
+
+    <a href="#contact">
+        Book an Appointment
+    </a>
+
+</section>
+
+
+    <!-- About Section -->
+    <section id="about">
+
+    <div class="about-image">
+
+        <img
+            src="{{ url_for('static', filename='images/collection 1.jpg') }}"
+            alt="MOG Stitches Bespoke Fashion"
+        >
+
+    </div>
+
+
+    <div class="about-content">
+
+        <p class="about-label">ABOUT MOG STITCHES</p>
+
+        <h2>Crafting Elegance.<br>Defining Style.</h2>
+
+        <p>
+            MOG Stitches is a Nigerian bespoke fashion brand
+            dedicated to creating elegant, stylish and
+            perfectly fitted outfits.
+        </p>
+
+        <p>
+            From the first cut to the final stitch, every
+            garment is carefully crafted with precision,
+            creativity and attention to detail.
+        </p>
+
+        <p>
+            Our goal is simple — to create outfits that don't
+            just fit the body, but express the personality
+            and confidence of the person wearing them.
+        </p>
+
+        <div class="about-line"></div>
+
+        <p class="about-tagline">
+            Inspired by the Master Designer.
+        </p>
+
+    </div>
+
+</section>
+
+    <!-- Services -->
+    <section id="services">
+
+    <div class="section-heading">
+
+        <p>WHAT WE OFFER</p>
+
+        <h2>Our Services</h2>
+
+        <span>
+            From traditional Nigerian elegance to modern
+            contemporary fashion, we create pieces designed
+            to make you stand out.
+        </span>
+
+    </div>
+
+
+    <div class="services-grid">
+
+        <div class="service-card">
+            <div class="service-number">01</div>
+
+            <h3>Bespoke Tailoring</h3>
+
+            <p>
+                Custom-made outfits carefully designed and
+                tailored to your measurements and personal style.
+            </p>
+        </div>
+
+
+        <div class="service-card">
+            <div class="service-number">02</div>
+
+            <h3>Agbada & Native Wear</h3>
+
+            <p>
+                Elegant Nigerian traditional outfits crafted
+                for weddings, celebrations and special occasions.
+            </p>
+        </div>
+
+
+        <div class="service-card">
+            <div class="service-number">03</div>
+
+            <h3>Senator & Smart Wear</h3>
+
+            <p>
+                Sophisticated senator styles and smart native
+                outfits for a confident and refined appearance.
+            </p>
+        </div>
+
+
+        <div class="service-card">
+            <div class="service-number">04</div>
+
+            <h3>Suits</h3>
+
+            <p>
+                Sharp, sophisticated suits tailored to give you
+                a clean and distinguished appearance.
+            </p>
+        </div>
+
+
+        <div class="service-card">
+            <div class="service-number">05</div>
+
+            <h3>Female Wear</h3>
+
+            <p>
+                Elegant and stylish women's outfits created
+                with attention to fit, detail and individuality.
+            </p>
+        </div>
+
+
+        <div class="service-card">
+            <div class="service-number">06</div>
+
+            <h3>Luxury Finishing</h3>
+
+            <p>
+                Premium finishing touches that transform every
+                garment into a refined and polished piece.
+            </p>
+        </div>
+
+    </div>
+
+</section>
+    <!-- Gallery -->
+   <section id="gallery">
+
+    <div class="section-heading">
+
+        <p>OUR COLLECTION</p>
+
+        <h2>Crafted With Excellence</h2>
+
+        <span>
+            A selection of bespoke pieces crafted
+            with precision, elegance and attention to detail.
+        </span>
+
+    </div>
+
+
+    <div class="gallery-grid">
+
+        <div class="gallery-item">
+            <img src="{{ url_for('static', filename='images/collection 1.jpg') }}"
+                 alt="MOG Stitches Collection 1">
+                
+        </div>
+
+
+        <div class="gallery-item">
+            <img src="{{ url_for('static', filename='images/collection 2.jpg') }}"
+                 alt="MOG Stitches Collection 2">
+		
+        </div>
+
+
+        <div class="gallery-item">
+            <img src="{{ url_for('static', filename='images/collection 3.jpg') }}"
+                 alt="MOG Stitches Collection 3">
+		
+        </div>
+
+
+        <div class="gallery-item">
+            <img src="{{ url_for('static', filename='images/collection 4.jpg') }}"
+                 alt="MOG Stitches Collection 4">
+		
+        </div>
+
+
+        <div class="gallery-item">
+            <img src="{{ url_for('static', filename='images/collection 5.jpg') }}"
+                 alt="MOG Stitches Collection 5">
+		
+        </div>
+
+    </div>
+
+</section>
+
+
+    <!-- Contact -->
+    <section id="contact">
+
+    <div class="contact-container">
+
+        <div class="contact-content">
+
+            <p class="contact-label">GET IN TOUCH</p>
+
+            <h2>Let's Create<br>Your Perfect Look.</h2>
+
+            <p>
+                Ready to experience bespoke fashion?
+                Contact MOG Stitches today and let's bring
+                your style vision to life.
+            </p>
+
+            <a
+                href="https://wa.me/2349069642593"
+                class="whatsapp-button"
+                target="_blank"
+            >
+                Chat With Us on WhatsApp
+            </a>
+
+            <!-- Social Media -->
+
+            <div class="social-links">
+
+                <a
+                    href="https://www.facebook.com/chidadi.ogbonna"
+                    target="_blank"
+                >
+                    Facebook
+                </a>
+
+                <a
+                    href="https://instagram.com/gchidiadi36"
+                    target="_blank"
+                >
+                    Instagram
+                </a>
+
+                <a
+                    href="https://www.tiktok.com/@mogstich"
+                    target="_blank"
+                >
+                    TikTok
+                </a>
+
+            </div>
+
+        </div>
+
+
+        <div class="contact-details">
+
+            <div class="contact-item">
+
+                <h3>Visit Us</h3>
+
+                <p>
+                    10 NYSC Road,<br>
+                    Alakahia, Port Harcourt,<br>
+                    Rivers State, Nigeria
+                </p>
+
+            </div>
+
+
+            <div class="contact-item">
+
+                <h3>Call / WhatsApp</h3>
+
+                <p>
+                    0906 964 2593
+                </p>
+
+            </div>
+
+
+            <div class="contact-item">
+
+                <h3>Email</h3>
+
+                <p>
+                    gchidiadi36@gmail.com
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- Google Map -->
+
+    <div class="map-container">
+
+        <iframe
+            src="https://www.google.com/maps?q=10+NYSC+Road,+Alakahia,+Port+Harcourt,+Rivers+State&output=embed"
+            width="100%"
+            height="400"
+            style="border:0;"
+            allowfullscreen=""
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade">
+        </iframe>
+
+    </div>
+
+</section>
+<!-- Appointment Booking -->
+
+<section id="booking">
+
+    <div class="section-heading">
+
+        <p>BOOK YOUR EXPERIENCE</p>
+
+        <h2>Book an Appointment</h2>
+
+        <span>
+            Let's create something exceptional together.
+            Tell us what you have in mind and we'll be in touch.
+        </span>
+
+    </div>
+
+
+    <div class="booking-container">
+
+       <form class="booking-form" onsubmit="sendBooking(event)">
+
+            <div class="form-group">
+
+                <label for="name">Full Name</label>
+
+                <input
+                    type="text"
+                    id="name"
+                    name="name"
+                    placeholder="Your full name"
+                    required
+                >
+
+            </div>
+
+
+            <div class="form-row">
+
+                <div class="form-group">
+
+                    <label for="phone">Phone / WhatsApp</label>
+
+                    <input
+                        type="tel"
+                        id="phone"
+                        name="phone"
+                        placeholder="0906 964 2593"
+                        required
+                    >
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="email">Email Address</label>
+
+                    <input
+                        type="email"
+                        id="email"
+                        name="email"
+                        placeholder="your@email.com"
+                    >
+
+                </div>
+
+            </div>
+
+
+            <div class="form-row">
+
+                <div class="form-group">
+
+                    <label for="outfit">Outfit Type</label>
+
+                    <select id="outfit" name="outfit">
+
+                        <option value="">
+                            Select outfit type
+                        </option>
+
+                        <option value="Agbada">
+                            Agbada
+                        </option>
+
+                        <option value="Native Wear">
+                            Native Wear
+                        </option>
+
+                        <option value="Senator">
+                            Senator
+                        </option>
+
+                        <option value="Suit">
+                            Suit
+                        </option>
+
+                        <option value="Female Wear">
+                            Female Wear
+                        </option>
+
+                        <option value="Other">
+                            Other
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="date">Preferred Date</label>
+
+                    <input
+                        type="date"
+                        id="date"
+                        name="date"
+                    >
+
+                </div>
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label for="message">Tell Us About Your Outfit</label>
+
+                <textarea
+                    id="message"
+                    name="message"
+                    rows="5"
+                    placeholder="Tell us about the outfit you want..."
+                ></textarea>
+
+            </div>
+
+
+            <button type="submit" class="booking-button">
+                Request Appointment
+            </button>
+
+        </form>
+
+    </div>
+
+</section>
+        <p>
+            © 2026 MOG Stitches.
+            All Rights Reserved.
+        </p>
+
+        <p>
+            Inspired by the Master Designer.
+        </p>
+
+    </footer>
+<footer class="site-footer">
+
+    <div class="footer-container">
+
+        <div class="footer-brand">
+
+            <h2>MOG <span>STITCHES</span></h2>
+
+            <p>
+                Premium Nigerian bespoke fashion crafted
+                with precision, elegance and style.
+            </p>
+
+            <p class="footer-tagline">
+                Inspired by the Master Designer.
+            </p>
+
+        </div>
+
+
+        <div class="footer-links">
+
+            <h3>Quick Links</h3>
+
+            <a href="#home">Home</a>
+            <a href="#about">About</a>
+            <a href="#services">Services</a>
+            <a href="#gallery">Collection</a>
+            <a href="#contact">Contact</a>
+
+        </div>
+
+
+        <div class="footer-contact">
+
+            <h3>Contact</h3>
+
+            <p>10 NYSC Road, Alakahia,<br>
+            Port Harcourt, Rivers State</p>
+
+            <p>0906 964 2593</p>
+
+            <p>gchidiadi36@gmail.com</p>
+
+        </div>
+
+
+        <div class="footer-social">
+
+            <h3>Follow Us</h3>
+
+            <a href="https://www.facebook.com/chidadi.ogbonna"
+               target="_blank">
+                Facebook
+            </a>
+
+            <a href="https://instagram.com/gchidiadi36"
+               target="_blank">
+                Instagram
+            </a>
+
+            <a href="https://www.tiktok.com/@mogstich"
+               target="_blank">
+                TikTok
+            </a>
+
+        </div>
+
+    </div>
+
+
+    <div class="footer-bottom">
+
+        <p>
+            © 2026 MOG Stitches. All Rights Reserved.
+        </p>
+
+        <p>
+            Inspired by the Master Designer.
+        </p>
+
+    </div>
+
+</footer>
+
+<script>
+
+function toggleMenu() {
+    document.getElementById("navLinks").classList.toggle("active");
+}
+
+
+/* =========================
+   GALLERY LIGHTBOX
+========================= */
+
+let currentImage = 0;
+
+const galleryImages = Array.from(
+    document.querySelectorAll(".gallery-item img")
+);
+
+
+function openLightbox(image) {
+
+    currentImage = galleryImages.indexOf(image);
+
+    document.getElementById("lightbox-image").src = image.src;
+
+    document.getElementById("lightbox").classList.add("active");
+}
+
+
+function closeLightbox() {
+
+    document.getElementById("lightbox").classList.remove("active");
+}
+
+
+function changeImage(direction) {
+
+    currentImage += direction;
+
+    if (currentImage < 0) {
+        currentImage = galleryImages.length - 1;
+    }
+
+    if (currentImage >= galleryImages.length) {
+        currentImage = 0;
+    }
+
+    document.getElementById("lightbox-image").src =
+        galleryImages[currentImage].src;
+}
+
+
+/* =========================
+   WHATSAPP APPOINTMENT
+========================= */
+
+function sendBooking(event) {
+
+    event.preventDefault();
+
+    const name = document.getElementById("name").value;
+    const phone = document.getElementById("phone").value;
+    const email = document.getElementById("email").value;
+    const outfit = document.getElementById("outfit").value;
+    const date = document.getElementById("date").value;
+    const message = document.getElementById("message").value;
+
+    const whatsappMessage =
+        "Hello MOG Stitches,%0A%0A" +
+        "*NEW APPOINTMENT REQUEST*%0A%0A" +
+        "*Name:* " + name + "%0A" +
+        "*Phone / WhatsApp:* " + phone + "%0A" +
+        "*Email:* " + email + "%0A" +
+        "*Outfit Type:* " + outfit + "%0A" +
+        "*Preferred Date:* " + date + "%0A" +
+        "*Message:* " + message + "%0A%0A" +
+        "Sent from the MOG Stitches website.";
+
+    const whatsappURL =
+        "https://wa.me/2349069642593?text=" + whatsappMessage;
+
+    window.open(whatsappURL, "_blank");
+}
+
+</script>
+
+</body>
+
+</html>
