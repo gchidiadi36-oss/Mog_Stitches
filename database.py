@@ -1,7 +1,8 @@
+import os
 import sqlite3
 
-
-DATABASE = "mog_stitches.db"
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+DATABASE = os.path.join(BASE_DIR, "mog_stitches.db")
 
 
 def get_db():
