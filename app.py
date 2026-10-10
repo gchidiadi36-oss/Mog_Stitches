@@ -8,6 +8,7 @@ from werkzeug.security import generate_password_hash, check_password_hash
 
 from database import get_db, init_db
 
+init_db()
 
 # =========================
 # FLASK APP
