@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>MOG Stitches | Upload Photo</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='admin.css') }}">
+</head>
+
+<body>
+
+<div class="admin-layout">
+
+    <aside class="sidebar">
+
+        <div class="sidebar-logo">
+            MOG <span>STITCHES</span>
+        </div>
+
+        <nav class="sidebar-nav">
+
+            <a href="/admin">
+                Dashboard
+            </a>
+
+            <a href="/admin/gallery" class="active">
+                🖼️ Gallery
+            </a>
+
+            <a href="#">
+                📝 Articles
+            </a>
+
+            <a href="#">
+                ⭐ Testimonials
+            </a>
+
+            <a href="/" target="_blank">
+                🌐 View Website
+            </a>
+
+            <a href="/admin/logout" class="logout">
+                Logout
+            </a>
+
+        </nav>
+
+    </aside>
+
+
+    <main class="admin-main">
+
+        <header class="admin-header">
+
+            <p>GALLERY MANAGEMENT</p>
+
+            <h1>Upload New Photo</h1>
+
+            <span>
+                Add a new fashion image to your MOG Stitches collection.
+            </span>
+
+        </header>
+
+
+        <div class="dashboard-card">
+
+            <form method="POST"
+                  enctype="multipart/form-data">
+
+                <div style="margin-bottom: 25px;">
+
+                    <label>
+                        Photo
+                    </label>
+
+                    <br><br>
+
+                    <input
+                        type="file"
+                        name="photo"
+                        accept="image/*"
+                        required
+                    >
+
+                </div>
+
+
+                <div style="margin-bottom: 25px;">
+
+                    <label>
+                        Photo Title
+                    </label>
+
+                    <br><br>
+
+                    <input
+                        type="text"
+                        name="title"
+                        placeholder="e.g. Luxury Senator Wear"
+                        style="width: 100%; padding: 14px;"
+                    >
+
+                </div>
+
+
+                <div style="margin-bottom: 25px;">
+
+                    <label for="category">
+                        Fashion Category
+                    </label>
+
+                    <br><br>
+
+                    <select
+                        name="category"
+                        id="category"
+                        required
+                        style="width: 100%; padding: 14px;"
+                    >
+                        <option value="Agbada">Agbada</option>
+                        <option value="Senator Wear">Senator Wear</option>
+                        <option value="Corporate Wear">Corporate Wear</option>
+                        <option value="Native Wear">Native Wear</option>
+                        <option value="Shirts">Shirts</option>
+                        <option value="Other" selected>Other</option>
+                    </select>
+
+                </div>
+                <div style="margin-bottom: 25px;">
+
+                    <label>
+                        Description
+                    </label>
+
+                    <br><br>
+
+                    <textarea
+                        name="description"
+                        placeholder="Short description of the outfit..."
+                        rows="5"
+                        style="width: 100%; padding: 14px;"
+                    ></textarea>
+
+                </div>
+
+
+                <button
+                    type="submit"
+                    class="dashboard-button"
+                    style="background: transparent; cursor: pointer;"
+                >
+                    Upload Photo
+                </button>
+
+                &nbsp;
+
+                <a
+                    href="/admin/gallery"
+                    class="dashboard-button"
+                >
+                    Cancel
+                </a>
+
+            </form>
+
+        </div>
+
+    </main>
+
+</div>
+
+</body>
+</html>

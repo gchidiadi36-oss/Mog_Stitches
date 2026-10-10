@@ -1,0 +1,93 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Manage Testimonials | MOG Stitches</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='admin.css') }}">
+</head>
+<body>
+
+<main class="admin-main">
+
+    <header class="admin-header">
+        <p>ADMINISTRATION</p>
+        <h1>Client Testimonials</h1>
+        <span>Review and manage customer feedback.</span>
+    </header>
+
+    <p>
+        <a href="{{ url_for('admin_dashboard') }}">
+            ← Back to Dashboard
+        </a>
+    </p>
+
+    {% if testimonials %}
+        <div class="dashboard-grid">
+
+            {% for testimonial in testimonials %}
+                <div class="dashboard-card">
+
+                    <h2>{{ testimonial['client_name'] }}</h2>
+
+                    <p>
+                        <strong>Rating:</strong>
+                        <span style="color: #D4AF37;">
+                            {{ '★' * testimonial['rating'] }}
+                            {{ '☆' * (5 - testimonial['rating']) }}
+                        </span>
+                    </p>
+
+                    <p>{{ testimonial['review'] }}</p>
+
+                    <p>
+                        <strong>Submitted:</strong>
+                        {{ testimonial['created_at'] }}
+                    </p>
+
+                    <p>
+                        <strong>Status:</strong>
+
+                        {% if testimonial['approved'] == 1 %}
+                            <span style="color: green;">Approved</span>
+                        {% else %}
+                            <span style="color: #b7791f;">Pending Approval</span>
+                        {% endif %}
+                    </p>
+
+                    {% if testimonial['approved'] == 0 %}
+                        <form method="POST"
+                              action="{{ url_for('approve_testimonial', testimonial_id=testimonial['id']) }}"
+                              style="margin-bottom: 10px;">
+                            <button type="submit" class="dashboard-button">
+                                Approve Review
+                            </button>
+                        </form>
+                    {% endif %}
+
+                    <form method="POST"
+                          action="{{ url_for('delete_testimonial', testimonial_id=testimonial['id']) }}"
+                          onsubmit="return confirm('Are you sure you want to delete this review?');">
+                        <button type="submit"
+                                class="dashboard-button"
+                                style="background: #b91c1c;">
+                            Delete Review
+                        </button>
+                    </form>
+
+                </div>
+            {% endfor %}
+
+        </div>
+    {% else %}
+        <p>No customer reviews have been submitted yet.</p>
+    {% endif %}
+
+</main>
+
+</body>
+</html>

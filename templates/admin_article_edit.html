@@ -1,0 +1,130 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Article | MOG Stitches</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='admin.css') }}">
+</head>
+<body>
+
+<div class="admin-layout">
+
+    <aside class="sidebar">
+        <h2>MOG STITCHES</h2>
+        <p>ADMIN PANEL</p>
+
+        <nav class="sidebar-nav">
+            <a href="{{ url_for('admin_dashboard') }}">Dashboard</a>
+            <a href="{{ url_for('admin_gallery') }}">Gallery</a>
+            <a href="{{ url_for('admin_articles') }}">Articles</a>
+            <a href="{{ url_for('home') }}" target="_blank">View Website</a>
+            <a href="{{ url_for('admin_logout') }}">Logout</a>
+        </nav>
+    </aside>
+
+    <main class="admin-main">
+
+        <h1>Edit Article</h1>
+        <p>Update your article details below.</p>
+
+        <form method="POST" enctype="multipart/form-data">
+
+            <label for="title">Article Title</label>
+            <input
+                type="text"
+                id="title"
+                name="title"
+                value="{{ article['title'] }}"
+                required
+            >
+
+            <br><br>
+
+            <label for="content">Article Content</label>
+            <textarea
+                id="content"
+                name="content"
+                rows="12"
+                required
+            >{{ article['content'] }}</textarea>
+
+            <br><br>
+
+          
+{% if article['featured_image'] %}
+    <p>Current Featured Image:</p>
+    <img
+        src="{{ url_for('static', filename='images/' + article['featured_image']) }}"
+        alt="Current featured image"
+        style="width: 200px; max-width: 100%; margin-bottom: 15px;"
+    >
+{% endif %}
+
+<br>
+
+<label for="featured_image">Replace Featured Image (optional)</label>
+
+<br><br>
+
+<input
+    type="file"
+    id="featured_image"
+    name="featured_image"
+    accept="image/*"
+>
+
+<br><br>
+
+<img
+    id="image_preview"
+    src=""
+    alt="New featured image preview"
+    style="display:none; max-width:300px; width:100%; height:auto; border-radius:10px; border:1px solid #D4AF37;"
+>
+
+<br><br>
+
+       
+<label>
+    <input
+        type="checkbox"
+        name="published"
+        value="1"
+        {% if article['published'] == 1 %}checked{% endif %}
+    >
+    Publish this article
+</label>
+
+            <button type="submit" class="dashboard-button">
+                Save Changes
+            </button>
+
+            <a href="{{ url_for('admin_articles') }}">Cancel</a>
+
+        </form>
+
+    </main>
+</div>
+
+<script>
+    const imageInput = document.getElementById('featured_image');
+    const imagePreview = document.getElementById('image_preview');
+
+    imageInput.addEventListener('change', function () {
+        const file = this.files[0];
+
+        if (file && file.type.startsWith('image/')) {
+            imagePreview.src = URL.createObjectURL(file);
+            imagePreview.style.display = 'block';
+        } else {
+            imagePreview.removeAttribute('src');
+            imagePreview.style.display = 'none';
+        }
+    });
+</script>
+
+</body>
+</html>
+

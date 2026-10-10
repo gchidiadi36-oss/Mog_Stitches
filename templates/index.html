@@ -1,9 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 
-   name="description"
-        content="MOG Stitches is a premium Nigerian bespoke fashion brand in Port Harcourt, creating elegant agbada, native wear, senator styles, suits and female wear."
-    >
+ 
 
     <meta
         name="keywords"
@@ -79,15 +77,8 @@
     </div>
 
 </nav>
-        <h1>MOG STITCHES</h1>
-
-        <div>
-            <a href="#home">Home</a>
-            <a href="#about">About</a>
-            <a href="#services">Services</a>
-            <a href="#gallery">Gallery</a>
-            <a href="#contact">Contact</a>
-        </div>
+        
+            
     </nav>
 
 
@@ -253,8 +244,9 @@
     </div>
 
 </section>
-    <!-- Gallery -->
-   <section id="gallery">
+  <!-- Gallery -->
+
+<section id="gallery">
 
     <div class="section-heading">
 
@@ -269,49 +261,127 @@
 
     </div>
 
+    <div class="gallery-filters">
 
-    <div class="gallery-grid">
+        <button class="filter-btn active" data-category="All">
+            All
+        </button>
 
-        <div class="gallery-item">
-            <img src="{{ url_for('static', filename='images/collection 1.jpg') }}"
-                 alt="MOG Stitches Collection 1">
-                
+        <button class="filter-btn" data-category="Agbada">
+            Agbada
+        </button>
+
+        <button class="filter-btn" data-category="Senator Wear">
+            Senator Wear
+        </button>
+
+        <button class="filter-btn" data-category="Corporate Wear">
+            Corporate Wear
+        </button>
+
+        <button class="filter-btn" data-category="Native Wear">
+            Native Wear
+        </button>
+
+        <button class="filter-btn" data-category="Shirts">
+            Shirts
+        </button>
+
+        <button class="filter-btn" data-category="Other">
+            Other
+        </button>
+
+    </div>
+
+ 
+<div class="gallery-grid">
+
+    {% for image in gallery %}
+
+    <div class="gallery-item"
+         data-category="{{ image['category'] or 'Other' }}">
+
+        <div class="gallery-image-wrap">
+
+            <img
+                src="{{ url_for('static', filename='images/' + image['filename']) }}"
+                alt="{{ image['title'] or 'MOG Stitches bespoke fashion' }}"
+                loading="lazy"
+            >
+
+            <span class="gallery-image-category">
+                {{ (image['category'] or 'Other') | upper }}
+            </span>
+
         </div>
 
+        <div class="gallery-caption">
 
-        <div class="gallery-item">
-            <img src="{{ url_for('static', filename='images/collection 2.jpg') }}"
-                 alt="MOG Stitches Collection 2">
-		
-        </div>
+            <h3>
+                {{ image['title'] or 'Bespoke Creation' }}
+            </h3>
 
+            <p>
+                {{ image['description'] or 'Expertly crafted by MOG Stitches.' }}
+            </p>
 
-        <div class="gallery-item">
-            <img src="{{ url_for('static', filename='images/collection 3.jpg') }}"
-                 alt="MOG Stitches Collection 3">
-		
-        </div>
+            <span class="gallery-caption-line"></span>
 
-
-        <div class="gallery-item">
-            <img src="{{ url_for('static', filename='images/collection 4.jpg') }}"
-                 alt="MOG Stitches Collection 4">
-		
-        </div>
-
-
-        <div class="gallery-item">
-            <img src="{{ url_for('static', filename='images/collection 5.jpg') }}"
-                 alt="MOG Stitches Collection 5">
-		
         </div>
 
     </div>
 
+    {% endfor %}
+
+</div>
+
+      
+
 </section>
 
-
     <!-- Contact -->
+
+<!-- TESTIMONIALS SECTION -->
+<section id="testimonials" class="testimonials-section">
+    <div class="section-heading">
+        <p class="section-subtitle">CLIENT EXPERIENCES</p>
+        <h2>What Our Clients Say</h2>
+        <p>
+            Every stitch tells a story. Here's what our clients
+            say about their experience with MOG Stitches.
+        </p>
+    </div>
+
+    <div class="testimonials-grid">
+        {% for testimonial in testimonials %}
+            <article class="testimonial-card">
+
+                <div class="testimonial-stars" aria-label="{{ testimonial['rating'] }} out of 5 stars">
+                    {% for star in range(testimonial['rating']) %}★{% endfor %}{% for star in range(5 - testimonial['rating']) %}☆{% endfor %}
+                </div>
+
+                <blockquote>
+                    {{ testimonial['review'] }}
+                </blockquote>
+
+                <h3>{{ testimonial['client_name'] }}</h3>
+                <p class="testimonial-label">Verified website submission</p>
+
+            </article>
+        {% else %}
+            <p class="testimonials-empty">
+                Our clients' stories will appear here soon.
+            </p>
+        {% endfor %}
+    </div>
+
+    <div class="testimonial-cta">
+        <p>Have you experienced the MOG Stitches difference?</p>
+        <a href="{{ url_for('leave_review') }}" class="testimonial-button">
+            Share Your Experience
+        </a>
+    </div>
+</section>
     <section id="contact">
 
     <div class="contact-container">
@@ -426,153 +496,138 @@
 </section>
 <!-- Appointment Booking -->
 
-<section id="booking">
+<div class="booking-container">
 
-    <div class="section-heading">
+    <form class="booking-form" onsubmit="sendBooking(event)">
 
-        <p>BOOK YOUR EXPERIENCE</p>
+        <!-- CUSTOMER DETAILS -->
+        <div class="form-group">
+            <label for="name">Full Name *</label>
+            <input
+                type="text"
+                id="name"
+                name="name"
+                placeholder="Enter your full name"
+                autocomplete="name"
+                required
+            >
+        </div>
 
-        <h2>Book an Appointment</h2>
-
-        <span>
-            Let's create something exceptional together.
-            Tell us what you have in mind and we'll be in touch.
-        </span>
-
-    </div>
-
-
-    <div class="booking-container">
-
-       <form class="booking-form" onsubmit="sendBooking(event)">
+        <div class="form-row">
 
             <div class="form-group">
-
-                <label for="name">Full Name</label>
-
+                <label for="phone">Phone / WhatsApp *</label>
                 <input
-                    type="text"
-                    id="name"
-                    name="name"
-                    placeholder="Your full name"
+                    type="tel"
+                    id="phone"
+                    name="phone"
+                    placeholder="e.g. 0906 964 2593"
+                    autocomplete="tel"
                     required
                 >
-
             </div>
-
-
-            <div class="form-row">
-
-                <div class="form-group">
-
-                    <label for="phone">Phone / WhatsApp</label>
-
-                    <input
-                        type="tel"
-                        id="phone"
-                        name="phone"
-                        placeholder="0906 964 2593"
-                        required
-                    >
-
-                </div>
-
-
-                <div class="form-group">
-
-                    <label for="email">Email Address</label>
-
-                    <input
-                        type="email"
-                        id="email"
-                        name="email"
-                        placeholder="your@email.com"
-                    >
-
-                </div>
-
-            </div>
-
-
-            <div class="form-row">
-
-                <div class="form-group">
-
-                    <label for="outfit">Outfit Type</label>
-
-                    <select id="outfit" name="outfit">
-
-                        <option value="">
-                            Select outfit type
-                        </option>
-
-                        <option value="Agbada">
-                            Agbada
-                        </option>
-
-                        <option value="Native Wear">
-                            Native Wear
-                        </option>
-
-                        <option value="Senator">
-                            Senator
-                        </option>
-
-                        <option value="Suit">
-                            Suit
-                        </option>
-
-                        <option value="Female Wear">
-                            Female Wear
-                        </option>
-
-                        <option value="Other">
-                            Other
-                        </option>
-
-                    </select>
-
-                </div>
-
-
-                <div class="form-group">
-
-                    <label for="date">Preferred Date</label>
-
-                    <input
-                        type="date"
-                        id="date"
-                        name="date"
-                    >
-
-                </div>
-
-            </div>
-
 
             <div class="form-group">
-
-                <label for="message">Tell Us About Your Outfit</label>
-
-                <textarea
-                    id="message"
-                    name="message"
-                    rows="5"
-                    placeholder="Tell us about the outfit you want..."
-                ></textarea>
-
+                <label for="email">Email Address (Optional)</label>
+                <input
+                    type="email"
+                    id="email"
+                    name="email"
+                    placeholder="your@email.com"
+                    autocomplete="email"
+                >
             </div>
 
+        </div>
 
-            <button type="submit" class="booking-button">
-                Request Appointment
-            </button>
+        <!-- OUTFIT DETAILS -->
+        <div class="form-row">
 
-        </form>
+            <div class="form-group">
+                <label for="outfit">Outfit Type *</label>
 
-    </div>
+                <select id="outfit" name="outfit" required>
+                    <option value="">Select outfit type</option>
+                    <option value="Agbada">Agbada</option>
+                    <option value="Senator Wear">Senator Wear</option>
+                    <option value="Corporate Wear">Corporate Wear</option>
+                    <option value="Suits">Suits</option>
+                    <option value="Native Wear">Native Wear</option>
+                    <option value="Shirts">Shirts</option>
+                    <option value="Female Wear">Female Wear</option>
+                    <option value="Other">Other</option>
+                </select>
+            </div>
 
-</section>
+            <div class="form-group">
+                <label for="service">Service Required *</label>
+
+                <select id="service" name="service" required>
+                    <option value="">Select a service</option>
+                    <option value="New outfit tailoring">New outfit tailoring</option>
+                    <option value="Outfit alteration">Outfit alteration</option>
+                    <option value="Measurement appointment">Measurement appointment</option>
+                    <option value="Style consultation">Style consultation</option>
+                </select>
+            </div>
+
+        </div>
+
+        <!-- APPOINTMENT DETAILS -->
+        <div class="form-row">
+
+            <div class="form-group">
+                <label for="date">Preferred Appointment Date *</label>
+                <input
+    type="date"
+    id="date"
+    name="date"
+    min="{{ today }}"
+    required
+>
+                >
+            </div>
+
+            <div class="form-group">
+                <label for="budget">Estimated Budget (Optional)</label>
+
+                <select id="budget" name="budget">
+                    <option value="">Select budget range</option>
+                    <option value="Below ₦50,000">Below ₦50,000</option>
+                    <option value="₦50,000 – ₦100,000">₦50,000 – ₦100,000</option>
+                    <option value="₦100,000 – ₦200,000">₦100,000 – ₦200,000</option>
+                    <option value="Above ₦200,000">Above ₦200,000</option>
+                    <option value="Need a quotation">I need a quotation</option>
+                </select>
+            </div>
+
+        </div>
+
+        <!-- ADDITIONAL INFORMATION -->
+        <div class="form-group">
+            <label for="message">Describe Your Outfit</label>
+
+            <textarea
+                id="message"
+                name="message"
+                rows="5"
+                placeholder="Describe your preferred fabric, colour, style, event, or any special requirements..."
+            ></textarea>
+        </div>
+
+        <p class="booking-note">
+            Your request will open in WhatsApp for you to review and send.
+            Your appointment is not confirmed until MOG Stitches responds.
+        </p>
+
+        <button type="submit" class="booking-button">
+            Request Appointment via WhatsApp
+        </button>
+
+    </form>
+
+</div>
+
         <p>
             © 2026 MOG Stitches.
             All Rights Reserved.
@@ -727,29 +782,102 @@ function sendBooking(event) {
 
     event.preventDefault();
 
-    const name = document.getElementById("name").value;
-    const phone = document.getElementById("phone").value;
-    const email = document.getElementById("email").value;
+    const name = document.getElementById("name").value.trim();
+    const phone = document.getElementById("phone").value.trim();
+    const email = document.getElementById("email").value.trim();
     const outfit = document.getElementById("outfit").value;
+    const service = document.getElementById("service").value;
     const date = document.getElementById("date").value;
-    const message = document.getElementById("message").value;
+    const budget = document.getElementById("budget").value;
+    const message = document.getElementById("message").value.trim();
+
+    // Prevent appointment dates in the past
+    const today = new Date();
+    const year = today.getFullYear();
+    const month = String(today.getMonth() + 1).padStart(2, "0");
+    const day = String(today.getDate()).padStart(2, "0");
+    const todayString = `${year}-${month}-${day}`;
+
+    if (date && date < todayString) {
+        alert("Please select today or a future appointment date.");
+        document.getElementById("date").focus();
+        return;
+    }
+
+    // Format the appointment date for readability
+    let formattedDate = "Not specified";
+
+    if (date) {
+        const dateParts = date.split("-");
+        formattedDate = `${dateParts[2]}/${dateParts[1]}/${dateParts[0]}`;
+    }
 
     const whatsappMessage =
-        "Hello MOG Stitches,%0A%0A" +
-        "*NEW APPOINTMENT REQUEST*%0A%0A" +
-        "*Name:* " + name + "%0A" +
-        "*Phone / WhatsApp:* " + phone + "%0A" +
-        "*Email:* " + email + "%0A" +
-        "*Outfit Type:* " + outfit + "%0A" +
-        "*Preferred Date:* " + date + "%0A" +
-        "*Message:* " + message + "%0A%0A" +
-        "Sent from the MOG Stitches website.";
+        "Hello MOG Stitches!%0A%0A" +
+        "*NEW APPOINTMENT REQUEST*%0A" +
+        "━━━━━━━━━━━━━━━━%0A" +
+        "*Customer Name:* " + encodeURIComponent(name) + "%0A" +
+        "*Phone / WhatsApp:* " + encodeURIComponent(phone) + "%0A" +
+        "*Email:* " + encodeURIComponent(email || "Not provided") + "%0A%0A" +
+        "*OUTFIT DETAILS*%0A" +
+        "*Outfit Type:* " + encodeURIComponent(outfit) + "%0A" +
+        "*Service Required:* " + encodeURIComponent(service) + "%0A" +
+        "*Preferred Date:* " + encodeURIComponent(formattedDate) + "%0A" +
+        "*Estimated Budget:* " + encodeURIComponent(budget || "Not specified") + "%0A" +
+        "*Style / Special Requirements:* " +
+        encodeURIComponent(message || "Not provided") + "%0A%0A" +
+        "Please let me know your availability and the next steps. Thank you!%0A%0A" +
+        "_Sent from the MOG Stitches website._";
 
     const whatsappURL =
         "https://wa.me/2349069642593?text=" + whatsappMessage;
 
     window.open(whatsappURL, "_blank");
+
 }
+
+// =========================
+// GALLERY CATEGORY FILTERS
+// =========================
+
+document.addEventListener("DOMContentLoaded", function () {
+
+    const filterButtons = document.querySelectorAll(".filter-btn");
+    const galleryItems = document.querySelectorAll(".gallery-item");
+
+    filterButtons.forEach(function (button) {
+
+        button.addEventListener("click", function () {
+
+            const selectedCategory =
+                button.dataset.category.trim().toLowerCase();
+
+            filterButtons.forEach(function (btn) {
+                btn.classList.remove("active");
+            });
+
+            button.classList.add("active");
+
+            galleryItems.forEach(function (item) {
+
+                const itemCategory =
+                    (item.dataset.category || "Other")
+                    .trim()
+                    .toLowerCase();
+
+                item.style.display =
+                    selectedCategory === "all" ||
+                    selectedCategory === itemCategory
+                        ? ""
+                        : "none";
+
+            });
+
+        });
+
+    });
+
+});
 
 </script>
 

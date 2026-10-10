@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>MOG Stitches | New Article</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='admin.css') }}">
+<script src="https://cdn.jsdelivr.net/npm/quill@2.0.3/dist/quill.js"></script>
+
+<link href="https://cdn.jsdelivr.net/npm/quill@2.0.3/dist/quill.snow.css"
+      rel="stylesheet">
+
+</head>
+
+
+<body>
+
+<div class="admin-layout">
+
+    <aside class="sidebar">
+
+        <div class="sidebar-logo">
+            MOG <span>STITCHES</span>
+        </div>
+
+        <nav class="sidebar-nav">
+
+            <a href="/admin">
+                Dashboard
+            </a>
+
+            <a href="/admin/gallery">
+                🖼️ Gallery
+            </a>
+
+            <a href="/admin/articles"
+               class="active">
+                📝 Articles
+            </a>
+
+            <a href="#">
+                ⭐ Testimonials
+            </a>
+
+            <a href="/"
+               target="_blank">
+                🌐 View Website
+            </a>
+
+            <a href="/admin/logout"
+               class="logout">
+                Logout
+            </a>
+
+        </nav>
+
+    </aside>
+
+
+    <main class="admin-main">
+
+        <header class="admin-header">
+
+            <p>ARTICLE MANAGEMENT</p>
+
+            <h1>New Article</h1>
+
+            <span>
+                Create a new story for MOG Stitches.
+            </span>
+
+        </header>
+
+
+        <div class="dashboard-card">
+
+            <form method="POST"
+                  enctype="multipart/form-data">
+
+
+                <!-- TITLE -->
+
+                <div style="margin-bottom: 25px;">
+
+                    <label>
+                        Article Title
+                    </label>
+
+                    <br><br>
+
+                    <input
+                        type="text"
+                        name="title"
+                        placeholder="Enter article title"
+                        required
+                        style="
+                            width: 100%;
+                            padding: 14px;
+                        "
+                    >
+
+                </div>
+
+
+            <!-- CONTENT -->
+
+<div style="margin-bottom: 25px;">
+
+    <label>
+        Article Content
+    </label>
+
+    <br><br>
+
+    <div id="editor"
+         style="
+             background: white;
+             color: black;
+             min-height: 300px;
+         ">
+    </div>
+
+    <textarea
+        name="content"
+        id="content"
+        style="display: none;"
+    ></textarea>
+
+</div>
+
+                <!-- FEATURED IMAGE -->
+
+<div style="margin-bottom: 25px;">
+
+    <label>
+        Featured Image
+    </label>
+
+    <br><br>
+
+    <input
+        type="file"
+        name="featured_image"
+        id="featured_image"
+        accept="image/*"
+    >
+
+    <br><br>
+
+    <img
+        id="image_preview"
+        src=""
+        alt="Featured image preview"
+        style="display:none; max-width:300px; width:100%; height:auto; border-radius:10px; border:1px solid #D4AF37;"
+    >
+
+</div>
+
+
+                <!-- PUBLISH -->
+
+                <div style="margin-bottom: 30px;">
+
+                    <label>
+
+                        <input
+                            type="checkbox"
+                            name="published"
+                            value="1"
+                        >
+
+                        Publish this article immediately
+
+                    </label>
+
+                </div>
+
+
+                <button
+                    type="submit"
+                    class="dashboard-button"
+                    style="
+                        background: transparent;
+                        cursor: pointer;
+                    "
+                >
+                    Save Article
+                </button>
+
+
+                &nbsp;
+
+
+                <a
+                    href="/admin/articles"
+                    class="dashboard-button"
+                >
+                    Cancel
+                </a>
+
+
+            </form>
+
+        </div>
+
+    </main>
+
+</div>
+<script>
+
+    const quill = new Quill('#editor', {
+        theme: 'snow',
+        placeholder: 'Write your article here...',
+        modules: {
+            toolbar: [
+                [{ header: [1, 2, 3, false] }],
+                ['bold', 'italic', 'underline'],
+                [{ list: 'ordered' }, { list: 'bullet' }],
+                ['link'],
+                ['clean']
+            ]
+        }
+    });
+
+    const form = document.querySelector('form');
+    const content = document.querySelector('#content');
+
+    form.addEventListener('submit', function () {
+
+        content.value = quill.root.innerHTML;
+
+    });
+
+const imageInput = document.getElementById('featured_image');
+const imagePreview = document.getElementById('image_preview');
+
+imageInput.addEventListener('change', function () {
+    const file = this.files[0];
+
+    if (file && file.type.startsWith('image/')) {
+        imagePreview.src = URL.createObjectURL(file);
+        imagePreview.style.display = 'block';
+    } else {
+        imagePreview.removeAttribute('src');
+        imagePreview.style.display = 'none';
+    }
+});
+
+</script>
+
+</body>
+
+</html>

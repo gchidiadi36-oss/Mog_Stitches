@@ -1,0 +1,169 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Edit Gallery Image | MOG Stitches</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='admin.css') }}">
+
+    <style>
+        .edit-gallery-container {
+            max-width: 750px;
+            margin: 40px auto;
+            padding: 30px;
+            background: #fff;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+        }
+
+        .edit-gallery-container h1 {
+            color: #0B1F4B;
+            margin-bottom: 25px;
+        }
+
+        .edit-gallery-container label {
+            display: block;
+            margin: 20px 0 8px;
+            font-weight: 600;
+            color: #0B1F4B;
+        }
+
+        .edit-gallery-container input,
+        .edit-gallery-container textarea,
+        .edit-gallery-container select {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            box-sizing: border-box;
+            font: inherit;
+        }
+
+        .edit-gallery-container textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+
+        .edit-gallery-preview {
+            width: 100%;
+            max-width: 350px;
+            max-height: 350px;
+            object-fit: contain;
+            display: block;
+            margin: 20px 0;
+            border-radius: 8px;
+        }
+
+        .edit-gallery-buttons {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+            margin-top: 25px;
+        }
+
+        .edit-gallery-buttons button,
+        .edit-gallery-buttons a {
+            padding: 12px 22px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 600;
+            cursor: pointer;
+        }
+
+        .save-gallery-button {
+            background: #0B1F4B;
+            color: #D4AF37;
+            border: 1px solid #D4AF37;
+        }
+
+        .cancel-gallery-button {
+            background: #f1f1f1;
+            color: #333;
+        }
+
+        @media (max-width: 600px) {
+            .edit-gallery-container {
+                margin: 20px 12px;
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <main class="edit-gallery-container">
+
+        <h1>Edit Gallery Image</h1>
+
+        <p>Update the details of this MOG Stitches collection piece.</p>
+
+        <img
+            class="edit-gallery-preview"
+            src="{{ url_for('static', filename='images/' + image['filename']) }}"
+            alt="{{ image['title'] or 'MOG Stitches Collection' }}"
+        >
+
+        <form method="POST">
+
+            <label for="title">Photo Title</label>
+
+            <input
+                type="text"
+                id="title"
+                name="title"
+                value="{{ image['title'] or '' }}"
+                placeholder="Enter photo title"
+            >
+
+            <label for="description">Description</label>
+
+            <textarea
+                id="description"
+                name="description"
+                placeholder="Describe this outfit"
+            >{{ image['description'] or '' }}</textarea>
+
+            <label for="category">Fashion Category</label>
+
+            <select id="category" name="category" required>
+
+                {% for category in categories %}
+
+                <option
+                    value="{{ category }}"
+                    {% if (image['category'] or 'Other') == category %}selected{% endif %}
+                >
+                    {{ category }}
+                </option>
+
+                {% endfor %}
+
+            </select>
+
+            <div class="edit-gallery-buttons">
+
+                <button type="submit" class="save-gallery-button">
+                    Save Changes
+                </button>
+
+                <a
+                    href="{{ url_for('admin_gallery') }}"
+                    class="cancel-gallery-button"
+                >
+                    Cancel
+                </a>
+
+            </div>
+
+        </form>
+
+    </main>
+
+</body>
+</html>
+

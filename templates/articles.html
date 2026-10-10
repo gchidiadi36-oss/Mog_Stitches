@@ -1,0 +1,140 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Articles | MOG Stitches</title>
+
+    <meta name="description"
+          content="Articles, fashion insights and stories from MOG Stitches. Inspired by the Master Designer.">
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+    <!-- HEADER -->
+
+    <header class="site-header">
+
+        <div class="logo">
+            MOG <span>STITCHES</span>
+        </div>
+
+        <nav>
+            <a href="{{ url_for('home') }}">Home</a>
+            <a href="{{ url_for('home') }}#about">About</a>
+            <a href="{{ url_for('home') }}#services">Services</a>
+            <a href="{{ url_for('home') }}#gallery">Collection</a>
+            <a href="{{ url_for('home') }}#contact">Contact</a>
+        </nav>
+
+    </header>
+
+
+    <!-- ARTICLES HERO -->
+
+    <section class="articles-hero">
+
+        <div class="section-heading">
+
+            <p>MOG STITCHES</p>
+
+            <h1>Stories &amp; Insights</h1>
+
+            <span>
+                Discover fashion stories, style insights and the craftsmanship
+                behind every MOG Stitches creation.
+            </span>
+
+        </div>
+
+    </section>
+
+
+    <!-- ARTICLES -->
+
+    <section class="articles-section">
+
+        <div class="articles-grid">
+
+            {% for article in articles %}
+
+            <article class="article-card">
+
+                {% if article['featured_image'] %}
+
+                <div class="article-image">
+
+                    <img
+                        src="{{ url_for(
+                            'static',
+                            filename='images/' + article['featured_image']
+                        ) }}"
+                        alt="{{ article['title'] }}"
+                    >
+
+                </div>
+
+                {% endif %}
+
+
+                <div class="article-content">
+
+                    <span class="article-date">
+                        {{ article['created_at'][:10] }}
+                    </span>
+
+                    <h2>
+                        {{ article['title'] }}
+                    </h2>
+
+                   
+<p>
+    {{ article['content'] | striptags | truncate(180) }}
+</p>
+
+                   <a href="{{ url_for('article_detail', article_id=article['id']) }}">
+    Read More →
+</a>
+
+                </div>
+
+            </article>
+
+            {% else %}
+
+            <div class="no-articles">
+
+                <h2>No articles available yet.</h2>
+
+                <p>
+                    Check back soon for new stories from MOG Stitches.
+                </p>
+
+            </div>
+
+            {% endfor %}
+
+        </div>
+
+    </section>
+
+
+    <!-- FOOTER -->
+
+    <footer>
+
+        <p>
+            © 2026 MOG Stitches.
+            Inspired by the Master Designer.
+        </p>
+
+    </footer>
+
+</body>
+</html>

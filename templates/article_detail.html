@@ -1,0 +1,143 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>{{ article['title'] }} | MOG Stitches</title>
+
+    <meta name="description"
+          content="{{ article['content'][:160] }}">
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+
+</head>
+
+<body>
+
+    <!-- HEADER -->
+
+    <header class="site-header">
+
+        <div class="logo">
+            MOG <span>STITCHES</span>
+        </div>
+
+        <nav>
+
+            <a href="{{ url_for('home') }}">
+                Home
+            </a>
+
+            <a href="{{ url_for('home') }}#about">
+                About
+            </a>
+
+            <a href="{{ url_for('home') }}#services">
+                Services
+            </a>
+
+            <a href="{{ url_for('home') }}#gallery">
+                Collection
+            </a>
+
+            <a href="{{ url_for('public_articles') }}">
+                Articles
+            </a>
+
+            <a href="{{ url_for('home') }}#contact">
+                Contact
+            </a>
+
+        </nav>
+
+    </header>
+
+
+    <!-- ARTICLE -->
+
+    <main class="article-detail">
+
+        <div class="article-detail-container">
+
+            <a href="{{ url_for('public_articles') }}"
+               class="article-back">
+                ← Back to Articles
+            </a>
+
+
+            <div class="article-detail-header">
+
+                <span class="article-date">
+
+                    {{ article['created_at'][:10] }}
+
+                </span>
+
+                <h1>
+
+                    {{ article['title'] }}
+
+                </h1>
+
+            </div>
+
+
+            {% if article['featured_image'] %}
+
+            <div class="article-detail-image">
+
+                <img
+                    src="{{ url_for(
+                        'static',
+                        filename='images/' + article['featured_image']
+                    ) }}"
+                    alt="{{ article['title'] }}"
+                >
+
+            </div>
+
+            {% endif %}
+
+
+<div class="article-detail-content">
+
+    {{ article['content'] | safe }}
+
+</div>
+
+            <div class="article-detail-footer">
+
+                <a href="{{ url_for('public_articles') }}"
+                   class="dashboard-button">
+
+                    ← Back to Articles
+
+                </a>
+
+            </div>
+
+        </div>
+
+    </main>
+
+
+    <!-- FOOTER -->
+
+    <footer>
+
+        <p>
+
+            © 2026 MOG Stitches.
+            Inspired by the Master Designer.
+
+        </p>
+
+    </footer>
+
+</body>
+</html>

@@ -1,0 +1,89 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Leave a Review | MOG Stitches</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+    <main class="admin-main">
+        <section class="dashboard-card">
+
+            <h1>Share Your Experience</h1>
+{% if submitted %}
+    <p style="color: green;">
+        Thank you! Your review has been submitted
+        and is awaiting approval.
+    </p>
+{% endif %}
+
+            <p>
+                Thank you for choosing MOG Stitches!
+                Tell us about your experience and help others
+                discover our craftsmanship.
+            </p>
+
+            <form method="POST"
+                  action="{{ url_for('submit_testimonial') }}">
+
+                <label for="client_name">Your Name</label>
+                <input
+                    type="text"
+                    id="client_name"
+                    name="client_name"
+                    placeholder="Enter your name"
+                    maxlength="100"
+                    required
+                >
+
+                <br><br>
+
+                <label for="rating">Rate Your Experience</label>
+                <select id="rating" name="rating" required>
+                    <option value="5">★★★★★ — Excellent</option>
+                    <option value="4">★★★★ — Very Good</option>
+                    <option value="3">★★★ — Good</option>
+                    <option value="2">★★ — Fair</option>
+                    <option value="1">★ — Poor</option>
+                </select>
+
+                <br><br>
+
+                <label for="review">Your Review</label>
+                <textarea
+                    id="review"
+                    name="review"
+                    rows="6"
+                    maxlength="2000"
+                    placeholder="Tell us about your experience with MOG Stitches..."
+                    required
+                ></textarea>
+
+                <br><br>
+
+                <button type="submit" class="dashboard-button">
+                    Submit Review
+                </button>
+
+            </form>
+
+            <p>
+                <small>
+                    Your review will be checked before it appears
+                    publicly on our website.
+                </small>
+            </p>
+
+           <a href="/">Back to Website</a>
+        </section>
+    </main>
+
+</body>
+</html>

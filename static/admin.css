@@ -1,0 +1,334 @@
+
+/* =========================
+   MOG STITCHES ADMIN DESIGN
+========================= */
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+:root {
+    --navy: #040e20;
+    --navy-dark: #020a16;
+    --navy-card: #0a1d38;
+    --gold: #d4af37;
+    --gold-soft: rgba(212, 175, 55, 0.15);
+    --text-main: #ffffff;
+    --text-muted: #aeb8c7;
+    --border: rgba(212, 175, 55, 0.22);
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background: var(--navy);
+    color: var(--text-main);
+    line-height: 1.6;
+}
+
+a,
+button,
+input,
+select,
+textarea {
+    font: inherit;
+}
+
+a {
+    transition: background 0.25s ease,
+                color 0.25s ease,
+                border-color 0.25s ease,
+                transform 0.25s ease;
+}
+
+.admin-layout {
+    min-height: 100vh;
+    display: flex;
+}
+
+/* SIDEBAR */
+
+.sidebar {
+    width: 250px;
+    flex-shrink: 0;
+    background: var(--navy-dark);
+    border-right: 1px solid var(--border);
+    padding: 30px 18px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    overflow-y: auto;
+    z-index: 100;
+}
+
+.sidebar-logo {
+    font-size: 21px;
+    font-weight: 700;
+    letter-spacing: 3px;
+    margin-bottom: 45px;
+    padding: 0 8px;
+}
+
+.sidebar-logo span {
+    color: var(--gold);
+}
+
+.sidebar-nav {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.sidebar-nav a {
+    display: block;
+    color: #c8cdd5;
+    text-decoration: none;
+    padding: 13px 15px;
+    border: 1px solid transparent;
+    border-radius: 7px;
+}
+
+.sidebar-nav a:hover,
+.sidebar-nav a.active {
+    background: var(--gold-soft);
+    color: var(--gold);
+    border-color: var(--border);
+}
+
+.sidebar-nav a:focus-visible,
+.dashboard-button:focus-visible {
+    outline: 2px solid var(--gold);
+    outline-offset: 3px;
+}
+
+.sidebar-nav .logout {
+    margin-top: 25px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 0;
+    padding-top: 20px;
+}
+
+/* MAIN CONTENT */
+
+.admin-main {
+    margin-left: 250px;
+    width: calc(100% - 250px);
+    min-width: 0;
+    padding: 45px;
+}
+
+.admin-header {
+    margin-bottom: 35px;
+    padding-bottom: 25px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.admin-header p {
+    color: var(--gold);
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 3px;
+    margin-bottom: 10px;
+}
+
+.admin-header h1 {
+    font-size: clamp(27px, 3vw, 38px);
+    line-height: 1.25;
+    overflow-wrap: anywhere;
+}
+
+.admin-header span {
+    display: block;
+    color: #9da6b4;
+    margin-top: 10px;
+}
+
+/* DASHBOARD GRIDS */
+
+.dashboard-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 22px;
+    margin-bottom: 28px;
+    align-items: stretch;
+}
+
+.dashboard-card {
+    min-width: 0;
+    background: linear-gradient(
+        145deg,
+        #0c2343,
+        var(--navy-card)
+    );
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 28px;
+    min-height: 200px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+    transition: transform 0.25s ease,
+                border-color 0.25s ease,
+                box-shadow 0.25s ease;
+}
+
+.dashboard-card:hover {
+    transform: translateY(-4px);
+    border-color: var(--gold);
+    box-shadow: 0 12px 28px rgba(0, 0, 0, 0.22);
+}
+
+.dashboard-icon {
+    font-size: 32px;
+    margin-bottom: 18px;
+}
+
+.dashboard-card h2 {
+    font-size: 23px;
+    line-height: 1.35;
+    margin-bottom: 10px;
+    overflow-wrap: anywhere;
+}
+
+.dashboard-card p {
+    color: var(--text-muted);
+    line-height: 1.7;
+    margin-bottom: 22px;
+}
+
+/* MANAGEMENT BUTTONS */
+
+.dashboard-button {
+    display: inline-block;
+    padding: 11px 18px;
+    border: 1px solid var(--gold);
+    border-radius: 6px;
+    color: var(--gold);
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 700;
+}
+
+.dashboard-button:hover {
+    background: var(--gold);
+    color: var(--navy);
+    transform: translateY(-1px);
+}
+
+/* GENERAL ADMIN FORMS */
+
+input,
+select,
+textarea {
+    max-width: 100%;
+}
+
+button {
+    cursor: pointer;
+}
+
+/* TABLET */
+
+@media (max-width: 1100px) {
+
+    .admin-main {
+        padding: 35px 25px;
+    }
+
+    .dashboard-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 18px;
+    }
+
+    .dashboard-card {
+        padding: 24px;
+    }
+}
+
+/* MOBILE */
+
+@media (max-width: 768px) {
+
+    .admin-layout {
+        display: block;
+    }
+
+    .sidebar {
+        position: relative;
+        width: 100%;
+        height: auto;
+        max-height: none;
+        border-right: none;
+        border-bottom: 1px solid var(--border);
+        padding: 22px 16px;
+    }
+
+    .sidebar-logo {
+        margin-bottom: 22px;
+        padding: 0;
+    }
+
+    .sidebar-nav {
+        flex-direction: row;
+        flex-wrap: wrap;
+        gap: 7px;
+    }
+
+    .sidebar-nav a {
+        padding: 10px 12px;
+        font-size: 13px;
+    }
+
+    .sidebar-nav .logout {
+        margin-top: 0;
+        border-top: none;
+        padding-top: 10px;
+    }
+
+    .admin-main {
+        margin-left: 0;
+        width: 100%;
+        padding: 28px 18px;
+    }
+
+    .admin-header {
+        margin-bottom: 28px;
+    }
+
+    .admin-header h1 {
+        font-size: 28px;
+    }
+
+    .dashboard-grid {
+        grid-template-columns: 1fr;
+        gap: 16px;
+        margin-bottom: 22px;
+    }
+
+    .dashboard-card {
+        min-height: auto;
+        padding: 24px;
+    }
+
+    .dashboard-icon {
+        margin-bottom: 12px;
+    }
+}
+
+/* REDUCED MOTION */
+
+@media (prefers-reduced-motion: reduce) {
+
+    *,
+    *::before,
+    *::after {
+        scroll-behavior: auto !important;
+        transition: none !important;
+        animation: none !important;
+    }
+
+    .dashboard-card:hover,
+    .dashboard-button:hover {
+        transform: none;
+    }
+}
