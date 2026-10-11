@@ -84,9 +84,7 @@
 
 
                 <div class="article-content">
-
-                   {{ article['created_at'][:10] }}
-
+{{ article['created_at'].strftime('%Y-%m-%d') if article['created_at'] is not string else article['created_at'][:10] }}
                     <h2>
                         {{ article['title'] }}
                     </h2>
