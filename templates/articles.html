@@ -85,8 +85,7 @@
 
                 <div class="article-content">
 
-                    <span class="article-date">{{ article['created_at'].strftime('%Y-%m-%d') }}
-                    </span>
+                   {{ article['created_at'][:10] }}
 
                     <h2>
                         {{ article['title'] }}

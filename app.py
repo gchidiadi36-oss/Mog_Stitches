@@ -103,12 +103,22 @@ def home():
         """
     ).fetchall()
 
+    articles = conn.execute(
+        """
+        SELECT * FROM articles
+        WHERE published = 1
+        ORDER BY id DESC
+        LIMIT 3
+        """
+    ).fetchall()
+
     conn.close()
 
     return render_template(
         "index.html",
         gallery=gallery,
         testimonials=testimonials,
+        articles=articles,
         today=date.today().isoformat()
     )
 
